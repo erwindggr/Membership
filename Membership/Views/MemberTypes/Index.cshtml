@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Membership.Models.MemberType>
+
+@{
+    ViewData["Title"] = "Member Type";
+}
+
+<h1 style="text-align : center;">Member typess</h1>
+
+<div style="display : flex; justify-content : flex-end;">
+    <button type="button" onclick="location.href='@Url.Action("Create")'" style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius : 10px; margin-block : 30px;">Create New</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                    <div style="display : flex; justify-content : flex-end;">
+                        <button type="button" onclick="location.href='@Url.Action("Edit", new { id = item.Id })'"
+                                style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px; margin-right : 1em;">
+                            Edit
+                        </button> |
+                        <button type="button" onclick="location.href='@Url.Action("Details", new { id = item.Id })'"
+                                style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px; margin-inline : 1em;">
+                            Details
+                        </button> |
+                        <button type="button" onclick="location.href='@Url.Action("Delete", new { id = item.Id })'"
+                                style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px; margin-left : 1em;">
+                            Delete
+                        </button>
+                    </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

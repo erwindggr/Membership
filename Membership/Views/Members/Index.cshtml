@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Membership.Models.Member>
+
+@{
+    ViewData["Title"] = "Member List";
+}
+
+<h1 style="text-align : center;">Member</h1>
+
+<div style="display : flex; justify-content : flex-end;">
+    <button type="button" onclick="location.href='@Url.Action("Create")'" style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius : 10px; margin-block : 30px;">Create New</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberType.TypeName)
+            </td>
+            <td>
+                <div style="display : flex; justify-content : space-between;">
+                    <button 
+                        type="button" onclick="location.href='@Url.Action("Edit", new { id = item.Id })'"
+                        style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px;"
+                        >
+                        Edit
+                    </button> |
+                    <button 
+                        type="button" onclick="location.href='@Url.Action("Details", new { id = item.Id })'"
+                        style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px;"
+                    >
+                        Details
+                    </button> |
+                    <button 
+                        type="button" onclick="location.href='@Url.Action("Delete", new { id = item.Id })'"
+                        style="background-color: #f5f5f5; color: #333; border: 1px solid #ccc; padding: 3px 10px; border-radius : 10px;"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
